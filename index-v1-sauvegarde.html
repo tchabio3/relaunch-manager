@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>RELAUNCH MANAGER</title>
+<style>
+:root{--bg:#f3f6fb;--panel:#fff;--ink:#172235;--muted:#718096;--line:#e6ebf2;--nav:#101827;--green:#18a66a;--green2:#e8f7ef;--blue:#4263eb;--amber:#b7791f;--red:#d64545;--shadow:0 8px 28px rgba(19,34,56,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+.app{min-height:100vh;display:grid;grid-template-columns:245px 1fr}
+.sidebar{background:var(--nav);color:#d9e2ef;padding:24px 16px;display:flex;flex-direction:column;gap:26px}
+.brand{display:flex;gap:11px;align-items:center;padding:0 9px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#20bd7c,#087d53);display:grid;place-items:center;color:#fff;font-weight:900;font-size:19px}.brand strong{display:block;font-size:14px;letter-spacing:.5px;color:#fff}.brand small{color:#8fa0b7;font-size:11px}
+.nav-label{font-size:10px;letter-spacing:1.4px;color:#75869f;padding:0 12px;margin-bottom:7px}.nav{display:grid;gap:5px}.nav button{background:transparent;color:#aebbd0;text-align:left;padding:11px 12px;border-radius:10px;display:flex;align-items:center;gap:12px}.nav button.active,.nav button:hover{background:#1d2b40;color:#fff}.nav .ico{width:19px;text-align:center;font-size:16px}.side-note{margin-top:auto;background:#1a2a3e;border:1px solid #2a3d55;border-radius:13px;padding:13px;color:#c4d1e1;font-size:12px}.side-note b{color:#fff;display:block;margin-bottom:4px}
+.main{min-width:0}.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.crumb{color:var(--muted);font-size:12px}.top-right{display:flex;align-items:center;gap:12px}.admin{display:flex;align-items:center;gap:9px;font-weight:650}.avatar{width:32px;height:32px;border-radius:50%;background:#e5edff;color:#3554bd;display:grid;place-items:center;font-weight:800}
+.content{padding:28px 30px;max-width:1450px;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:23px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}.page-head h1{font-size:25px;letter-spacing:-.7px;margin:5px 0}.sub{color:var(--muted);margin:0}.btn{padding:10px 14px;border-radius:9px;font-weight:700;display:inline-flex;gap:8px;align-items:center;justify-content:center}.primary{background:var(--green);color:white}.primary:hover{background:#118c59}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}.soft{background:var(--green2);color:#13784e}.danger{background:#fff0f0;color:var(--red)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.stat{padding:18px}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{width:32px;height:32px;border-radius:10px;background:#f0f4fa;display:grid;place-items:center}.stat strong{font-size:27px;display:block;margin:12px 0 2px;letter-spacing:-.8px}.stat small{color:var(--muted)}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}.panel{padding:19px;margin-bottom:16px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.panel h3{font-size:15px;margin:0}.muted{color:var(--muted)}.pill{display:inline-flex;padding:4px 8px;border-radius:99px;font-size:11px;font-weight:700;background:#f0f3f8;color:#66758b}.pill.green{background:#e7f7ef;color:#168252}.pill.amber{background:#fff5df;color:#99630d}.pill.red{background:#ffeded;color:#c43c3c}.pill.blue{background:#edf1ff;color:#405bd0}
+.progress{height:8px;background:#edf1f5;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green);border-radius:99px}.activity{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.dot{width:9px;height:9px;background:var(--green);border-radius:50%;margin-top:5px}.activity b{display:block;font-size:13px}.activity small{color:var(--muted)}
+.view{display:none}.view.active{display:block}
+.toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:14px}.field{padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-width:0}.search{flex:1;min-width:190px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:var(--muted);font-size:11px;font-weight:700;padding:11px 10px;border-bottom:1px solid var(--line)}td{padding:13px 10px;border-bottom:1px solid #eef1f5;font-size:12px}tr:last-child td{border-bottom:0}.empty{text-align:center;color:var(--muted);padding:28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.form-row{display:grid;gap:6px}.form-row.full{grid-column:1/-1}.form-row label{font-size:12px;font-weight:700;color:#536176}.form-row input,.form-row select,.form-row textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink)}textarea{min-height:130px;resize:vertical}.hint{font-size:11px;color:var(--muted)}.preview{white-space:pre-wrap;background:#f4f7fa;padding:14px;border-radius:11px;font-size:13px}
+.notice{padding:12px 14px;border-radius:10px;background:#fff8e8;color:#835d17;font-size:12px;border:1px solid #f3e5c4;margin-bottom:15px}
+.conversation-layout{display:grid;grid-template-columns:290px 1fr;min-height:460px}.thread-list{border-right:1px solid var(--line);padding-right:12px}.thread{padding:12px;border-radius:10px;cursor:pointer;margin-bottom:5px}.thread.active,.thread:hover{background:#f1f7f4}.thread b{display:block;font-size:12px}.thread small{color:var(--muted)}.chat{padding:0 6px 0 18px;display:flex;flex-direction:column}.chat-empty{margin:auto;text-align:center;color:var(--muted)}.bubble{max-width:75%;padding:11px 13px;border-radius:13px;margin:7px 0;font-size:13px;white-space:pre-wrap}.bubble.in{background:#f0f3f7;align-self:flex-start}.bubble.out{background:#e6f7ed;align-self:flex-end}.chat-compose{display:flex;gap:8px;margin-top:auto;padding-top:15px}.chat-compose input{flex:1;min-width:0}
+.modal-back{position:fixed;inset:0;background:#0d1728a8;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal-back.show{display:flex}.modal{background:#fff;border-radius:16px;padding:22px;max-width:510px;width:100%;box-shadow:0 20px 70px #0003}.modal h2{margin:0 0 8px;font-size:19px}.modal p{color:var(--muted);font-size:13px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px}
+.toast{position:fixed;bottom:20px;right:20px;background:#142338;color:#fff;padding:12px 16px;border-radius:10px;box-shadow:var(--shadow);display:none;z-index:20}
+@media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{padding:12px;gap:12px}.brand{padding:3px 7px}.nav-label,.side-note{display:none}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 11px;font-size:12px}.topbar{height:55px;padding:0 16px}.content{padding:20px 15px}.cards{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.conversation-layout{grid-template-columns:1fr}.thread-list{border:0;border-bottom:1px solid var(--line);padding:0 0 10px}.chat{padding:14px 0 0;min-height:300px}}
+@media(max-width:520px){.page-head{display:block}.page-head .btn{margin-top:13px}.cards{gap:9px}.stat{padding:13px}.stat strong{font-size:23px}.form-grid{grid-template-columns:1fr}.form-row.full{grid-column:auto}.top-right .muted{display:none}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">R</div><div><strong>RELAUNCH MANAGER</strong><small>Centre de fidélisation</small></div></div>
+  <div><div class="nav-label">ESPACE DE TRAVAIL</div><nav class="nav">
+    <button class="active" data-view="dashboard"><span class="ico">▦</span> Tableau de bord</button>
+    <button data-view="contacts"><span class="ico">♙</span> Contacts</button>
+    <button data-view="campaigns"><span class="ico">➤</span> Campagnes</button>
+    <button data-view="messages"><span class="ico">✉</span> Modèles de messages</button>
+    <button data-view="inbox"><span class="ico">▤</span> Conversations</button>
+    <button data-view="reports"><span class="ico">▥</span> Rapports</button>
+  </nav></div>
+  <div class="side-note"><b>Mode démonstration</b>Les données sont conservées dans ce navigateur. Aucun message WhatsApp réel n'est envoyé dans cette version.</div>
+</aside>
+<main class="main">
+  <header class="topbar"><div class="crumb">Espace de travail / <b id="crumb">Tableau de bord</b></div><div class="top-right"><span class="pill amber">WhatsApp non connecté</span><div class="admin"><div class="avatar">A</div><span>Administrateur</span></div></div></header>
+  <div class="content">
+    <section class="view active" id="dashboard">
+      <div class="page-head"><div><div class="eyebrow">Vue d'ensemble</div><h1>Bonjour, bienvenue 👋</h1><p class="sub">Pilote tes relances et garde le fil de chaque conversation.</p></div><button class="btn primary" onclick="go('campaigns')">＋ Nouvelle campagne</button></div>
+      <div class="cards">
+        <div class="card stat"><div class="stat-top">Contacts importés <span class="stat-icon">♙</span></div><strong id="statContacts">0</strong><small>Dans ta base de données</small></div>
+        <div class="card stat"><div class="stat-top">Campagnes préparées <span class="stat-icon">➤</span></div><strong id="statCampaigns">0</strong><small>Campagnes enregistrées</small></div>
+        <div class="card stat"><div class="stat-top">Messages envoyés <span class="stat-icon">✉</span></div><strong id="statSent">0</strong><small>Envois réels après connexion</small></div>
+        <div class="card stat"><div class="stat-top">Réponses reçues <span class="stat-icon">▤</span></div><strong id="statReplies">0</strong><small>Conversations centralisées</small></div>
+      </div>
+      <div class="two">
+        <div class="panel"><div class="panel-head"><h3>Préparation de campagne</h3><span class="pill amber">À configurer</span></div><p class="muted">Ton espace est prêt à accueillir tes contacts. Importe un fichier CSV ou ajoute un premier contact pour commencer.</p><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn primary" onclick="go('contacts')">Importer des contacts</button><button class="btn secondary" onclick="go('messages')">Créer un message</button></div><div style="margin-top:22px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px"><b>Préparation de l'espace</b><span id="setupPct">0 %</span></div><div class="progress"><span id="setupBar" style="width:0%"></span></div><small class="hint">Contacts + modèle de message + configuration WhatsApp</small></div></div>
+        <div class="panel"><div class="panel-head"><h3>Activité récente</h3><span class="pill">Local</span></div><div id="activity"><div class="empty">Aucune activité pour le moment.</div></div></div>
+      </div>
+      <div class="notice">Sécurité : cette première version est une maquette fonctionnelle locale. Ne l'utilise pas encore pour stocker des données clients sensibles sur un appareil partagé.</div>
+    </section>
+
+    <section class="view" id="contacts">
+      <div class="page-head"><div><div class="eyebrow">Base de données</div><h1>Contacts</h1><p class="sub">Gère les numéros sans les enregistrer dans ton téléphone.</p></div><button class="btn primary" onclick="document.getElementById('csvFile').click()">＋ Importer CSV</button></div>
+      <div class="panel">
+        <div class="toolbar"><input class="field search" id="contactSearch" placeholder="Rechercher un nom ou un numéro…" oninput="renderContacts()"><select class="field" id="contactFilter" onchange="renderContacts()"><option value="">Tous les statuts</option><option>À relancer</option><option>Relancé</option><option>A répondu</option><option>Ne plus contacter</option></select><button class="btn secondary" onclick="openContact()">＋ Ajouter</button><button class="btn secondary" onclick="downloadCSV()">Exporter CSV</button></div>
+        <div class="hint" style="margin-bottom:12px">Format CSV conseillé : nom,numero,statut,abonnement,consentement. Les numéros doivent inclure l'indicatif pays, par exemple +225.</div>
+        <input type="file" id="csvFile" accept=".csv,text/csv" hidden onchange="importCSV(event)">
+        <div class="table-wrap"><table><thead><tr><th>CLIENT</th><th>NUMÉRO</th><th>ABONNEMENT</th><th>STATUT</th><th>CONSENTEMENT</th><th></th></tr></thead><tbody id="contactsBody"></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="view" id="campaigns">
+      <div class="page-head"><div><div class="eyebrow">Opérations</div><h1>Campagnes</h1><p class="sub">Prépare les envois et valide chaque campagne avant son lancement.</p></div><button class="btn primary" onclick="openCampaign()">＋ Préparer une campagne</button></div>
+      <div class="notice">Aucun envoi réel n'est possible tant que le numéro WhatsApp Business Platform, les modèles approuvés et le serveur de connexion ne sont pas configurés.</div>
+      <div class="panel"><div class="panel-head"><h3>Mes campagnes</h3><span class="pill" id="campaignCount">0 campagne</span></div><div class="table-wrap"><table><thead><tr><th>NOM</th><th>DESTINATAIRES</th><th>CRÉÉE LE</th><th>STATUT</th><th>ACTION</th></tr></thead><tbody id="campaignsBody"></tbody></table></div></div>
+    </section>
+
+    <section class="view" id="messages">
+      <div class="page-head"><div><div class="eyebrow">Bibliothèque</div><h1>Modèles de messages</h1><p class="sub">Rédige une fois, personnalise automatiquement pour chaque client.</p></div></div>
+      <div class="two">
+        <div class="panel"><div class="panel-head"><h3>Créer un modèle</h3><span class="pill blue">Brouillon local</span></div>
+          <div class="form-grid">
+            <div class="form-row full"><label>Nom du modèle</label><input id="tplName" placeholder="Ex. Relance abonnement expiré"></div>
+            <div class="form-row full"><label>Contenu du message</label><textarea id="tplBody" placeholder="Bonjour {{nom}}, nous avons constaté que votre abonnement..."></textarea><div class="hint">Variables disponibles : {{nom}}, {{numero}}, {{abonnement}}</div></div>
+            <div class="form-row full"><button class="btn primary" onclick="saveTemplate()">Enregistrer le modèle</button></div>
+          </div>
+        </div>
+        <div class="panel"><div class="panel-head"><h3>Aperçu du message</h3><span class="pill">Exemple</span></div><div class="preview" id="tplPreview">Bonjour Client Exemple,
+
+Nous avons constaté que votre abonnement n'a pas été renouvelé.
+
+Rencontrez-vous des difficultés particulières ? Nous sommes à votre disposition.</div><p class="hint">Les modèles destinés aux messages initiés par l'entreprise devront être soumis à l'approbation de WhatsApp avant utilisation hors fenêtre de 24 heures.</p></div>
+      </div>
+      <div class="panel"><div class="panel-head"><h3>Modèles enregistrés</h3></div><div id="templatesList" class="muted">Aucun modèle enregistré.</div></div>
+    </section>
+
+    <section class="view" id="inbox">
+      <div class="page-head"><div><div class="eyebrow">Service client</div><h1>Conversations</h1><p class="sub">Toutes les réponses seront centralisées ici après connexion de WhatsApp.</p></div><span class="pill amber">Connexion requise</span></div>
+      <div class="panel conversation-layout">
+        <div class="thread-list" id="threads"><div class="empty">Aucune conversation reçue.</div></div>
+        <div class="chat"><div class="chat-empty"><div style="font-size:32px">▤</div><b>Ta boîte de réception</b><p>Les messages entrants apparaîtront ici.<br>La connexion WhatsApp activera les réponses en direct.</p></div></div>
+      </div>
+    </section>
+
+    <section class="view" id="reports">
+      <div class="page-head"><div><div class="eyebrow">Performance</div><h1>Rapports</h1><p class="sub">Mesure l'efficacité de tes relances.</p></div><button class="btn secondary" onclick="downloadCSV()">Exporter les contacts</button></div>
+      <div class="cards">
+        <div class="card stat"><div class="stat-top">Total contacts</div><strong id="repContacts">0</strong><small>Base importée</small></div>
+        <div class="card stat"><div class="stat-top">À relancer</div><strong id="repPending">0</strong><small>En attente de campagne</small></div>
+        <div class="card stat"><div class="stat-top">Clients ayant répondu</div><strong id="repAnswered">0</strong><small>Statut renseigné</small></div>
+        <div class="card stat"><div class="stat-top">Désinscrits</div><strong id="repOptout">0</strong><small>Exclus des prochains envois</small></div>
+      </div>
+      <div class="panel"><h3>Indicateurs à venir</h3><p class="muted">Après connexion de WhatsApp, cette page affichera le taux de livraison, le taux de réponse, les renouvellements attribués aux campagnes et les performances par période.</p></div>
+    </section>
+  </div>
+</main>
+</div>
+
+<div class="modal-back" id="contactModal"><div class="modal"><h2>Ajouter un contact</h2><p>Le numéro est enregistré dans la base de l'application, pas dans ton répertoire.</p><div class="form-grid">
+<div class="form-row"><label>Nom du client</label><input id="cName" placeholder="Nom ou identifiant"></div>
+<div class="form-row"><label>Numéro international</label><input id="cPhone" placeholder="+2250700000000"></div>
+<div class="form-row"><label>Abonnement</label><input id="cPlan" placeholder="Ex. Mensuel"></div>
+<div class="form-row"><label>Consentement WhatsApp</label><select id="cConsent"><option value="À vérifier">À vérifier</option><option value="Oui">Oui</option><option value="Non">Non</option></select></div>
+</div><div class="modal-actions"><button class="btn secondary" onclick="closeModal('contactModal')">Annuler</button><button class="btn primary" onclick="addContact()">Enregistrer</button></div></div></div>
+
+<div class="modal-back" id="campaignModal"><div class="modal"><h2>Préparer une campagne</h2><p>La campagne sera enregistrée en brouillon. Tu devras la valider après connexion WhatsApp.</p><div class="form-grid">
+<div class="form-row full"><label>Nom de la campagne</label><input id="campName" placeholder="Relance abonnements novembre"></div>
+<div class="form-row"><label>Destinataires</label><select id="campAudience"><option value="eligible">Contacts avec consentement confirmé</option><option value="all">Tous les contacts (préparation uniquement)</option></select></div>
+<div class="form-row"><label>Modèle de message</label><select id="campTemplate"></select></div>
+</div><div class="modal-actions"><button class="btn secondary" onclick="closeModal('campaignModal')">Annuler</button><button class="btn primary" onclick="saveCampaign()">Enregistrer le brouillon</button></div></div></div>
+
+<div class="modal-back" id="reviewModal"><div class="modal"><h2>Validation de la campagne</h2><p id="reviewText">Vérifie les informations avant validation.</p><div class="notice">Dans cette version, la validation enregistre ton accord mais ne déclenche aucun message réel.</div><div class="modal-actions"><button class="btn secondary" onclick="closeModal('reviewModal')">Retour</button><button class="btn primary" id="confirmReview">Confirmer la validation</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY='relaunch_manager_v1';
+let state=load();
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{contacts:[],templates:[],campaigns:[],activity:[]}}catch(e){return {contacts:[],templates:[],campaigns:[],activity:[]}}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(state));refresh()}
+function log(msg){state.activity.unshift({msg,date:new Date().toLocaleString('fr-FR')});state.activity=state.activity.slice(0,8)}
+function toast(msg){let t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
+function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));document.getElementById('crumb').textContent=({dashboard:'Tableau de bord',contacts:'Contacts',campaigns:'Campagnes',messages:'Modèles de messages',inbox:'Conversations',reports:'Rapports'})[id];if(id==='contacts')renderContacts();if(id==='campaigns')renderCampaigns();if(id==='messages')renderTemplates();if(id==='reports')renderReports()}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.view)));
+function modal(id,show=true){document.getElementById(id).classList.toggle('show',show)}function closeModal(id){modal(id,false)}
+function openContact(){['cName','cPhone','cPlan'].forEach(x=>document.getElementById(x).value='');document.getElementById('cConsent').value='À vérifier';modal('contactModal')}
+function addContact(){let name=document.getElementById('cName').value.trim(),phone=document.getElementById('cPhone').value.trim().replace(/[\\s().-]/g,'');if(!phone||!/^\\+?[0-9]{8,15}$/.test(phone)){toast('Vérifie le numéro international.');return}if(state.contacts.some(c=>c.phone===phone)){toast('Ce numéro existe déjà.');return}state.contacts.push({id:crypto.randomUUID(),name:name||'Client sans nom',phone,plan:document.getElementById('cPlan').value.trim(),status:'À relancer',consent:document.getElementById('cConsent').value});log('Contact ajouté : '+phone);persist();closeModal('contactModal');toast('Contact ajouté.')}
+function renderContacts(){let q=(document.getElementById('contactSearch')?.value||'').toLowerCase(),f=document.getElementById('contactFilter')?.value||'';let arr=state.contacts.filter(c=>(!q||(c.name+c.phone).toLowerCase().includes(q))&&(!f||c.status===f));let body=document.getElementById('contactsBody');body.innerHTML=arr.length?arr.map(c=>`<tr><td><b>${esc(c.name)}</b></td><td>${esc(c.phone)}</td><td>${esc(c.plan||'—')}</td><td>${status(c.status)}</td><td>${c.consent==='Oui'?'<span class="pill green">Confirmé</span>':c.consent==='Non'?'<span class="pill red">Refusé</span>':'<span class="pill amber">À vérifier</span>'}</td><td><button class="btn danger" style="padding:6px 9px" onclick="removeContact('${c.id}')">Supprimer</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">Aucun contact. Importe un CSV ou ajoute un contact.</td></tr>'}
+function status(s){let cl=s==='A répondu'?'green':s==='Relancé'?'blue':s==='Ne plus contacter'?'red':'amber';return `<span class="pill ${cl}">${esc(s)}</span>`}
+function removeContact(id){if(!confirm('Supprimer ce contact de la base locale ?'))return;state.contacts=state.contacts.filter(c=>c.id!==id);log('Un contact a été supprimé');persist()}
+function parseCSV(text){let rows=[],row=[],cell='',quoted=false;for(let i=0;i<text.length;i++){let ch=text[i],next=text[i+1];if(ch==='"'&&quoted&&next==='"'){cell+='"';i++}else if(ch==='"'){quoted=!quoted}else if((ch===','||ch===';'||ch==='\\t')&&!quoted){row.push(cell.trim());cell=''}else if((ch==='\\n'||ch==='\\r')&&!quoted){if(ch==='\\r'&&next==='\\n')i++;row.push(cell.trim());if(row.some(x=>x))rows.push(row);row=[];cell=''}else cell+=ch}row.push(cell.trim());if(row.some(x=>x))rows.push(row);return rows}
+function importCSV(ev){let file=ev.target.files[0];if(!file)return;let reader=new FileReader();reader.onload=()=>{let rows=parseCSV(reader.result);if(rows.length<1){toast('Fichier vide.');return}let first=rows[0].map(x=>x.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,''));let ni=first.findIndex(x=>['numero','telephone','phone','whatsapp','mobile'].includes(x)),namei=first.findIndex(x=>['nom','name','client'].includes(x)),plani=first.findIndex(x=>['abonnement','offre','plan'].includes(x)),coni=first.findIndex(x=>['consentement','optin','autorisation'].includes(x));let hasHeader=ni>=0;if(!hasHeader){ni=1;namei=0;plani=2;coni=3}let start=hasHeader?1:0,added=0,dupes=0,invalid=0;for(let i=start;i<rows.length;i++){let r=rows[i],raw=(r[ni]||'').replace(/[\\s().-]/g,'');if(!/^\\+?[0-9]{8,15}$/.test(raw)){invalid++;continue}if(state.contacts.some(c=>c.phone===raw)){dupes++;continue}state.contacts.push({id:crypto.randomUUID(),name:(namei>=0?r[namei]:'')||'Client sans nom',phone:raw,plan:plani>=0?r[plani]||'':'',status:'À relancer',consent:coni>=0?(r[coni]||'À vérifier'):'À vérifier'}) ;added++}log(added+' contact(s) importé(s) depuis un CSV');persist();toast(`${added} ajouté(s), ${dupes} doublon(s), ${invalid} invalide(s).`);ev.target.value=''};reader.readAsText(file)}
+function downloadCSV(){let lines=[['nom','numero','abonnement','statut','consentement'],...state.contacts.map(c=>[c.name,c.phone,c.plan,c.status,c.consent])];let csv=lines.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(';')).join('\\r\\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='relaunch-contacts.csv';a.click();URL.revokeObjectURL(a.href)}
+function saveTemplate(){let name=document.getElementById('tplName').value.trim(),body=document.getElementById('tplBody').value.trim();if(!name||!body){toast('Ajoute un nom et un message.');return}state.templates.push({id:crypto.randomUUID(),name,body});log('Modèle créé : '+name);persist();document.getElementById('tplName').value='';document.getElementById('tplBody').value='';toast('Modèle enregistré.')}
+document.getElementById('tplBody').addEventListener('input',e=>{document.getElementById('tplPreview').textContent=e.target.value.replaceAll('{{nom}}','Client Exemple').replaceAll('{{numero}}','+2250700000000').replaceAll('{{abonnement}}','Abonnement mensuel')||'Ton aperçu apparaîtra ici.'});
+function renderTemplates(){let el=document.getElementById('templatesList');el.innerHTML=state.templates.length?state.templates.map(t=>`<div style="padding:12px 0;border-top:1px solid var(--line)"><b>${esc(t.name)}</b><p class="muted" style="white-space:pre-wrap">${esc(t.body)}</p><button class="btn danger" style="padding:6px 9px" onclick="deleteTemplate('${t.id}')">Supprimer</button></div>`).join(''):'Aucun modèle enregistré.'}
+function deleteTemplate(id){state.templates=state.templates.filter(t=>t.id!==id);persist()}
+function openCampaign(){document.getElementById('campName').value='';let s=document.getElementById('campTemplate');s.innerHTML=state.templates.map(t=>`<option value="${t.id}">${esc(t.name)}</option>`).join('')||'<option value="">Aucun modèle disponible</option>';modal('campaignModal')}
+function saveCampaign(){let name=document.getElementById('campName').value.trim(),tpl=document.getElementById('campTemplate').value,aud=document.getElementById('campAudience').value;if(!name||!tpl){toast('Ajoute un nom et crée un modèle de message.');return}let count=state.contacts.filter(c=>aud==='all'||c.consent==='Oui').length;state.campaigns.push({id:crypto.randomUUID(),name,templateId:tpl,audience:aud,count,date:new Date().toLocaleDateString('fr-FR'),status:'Brouillon'});log('Campagne préparée : '+name);persist();closeModal('campaignModal');toast('Campagne enregistrée en brouillon.')}
+function renderCampaigns(){let b=document.getElementById('campaignsBody');document.getElementById('campaignCount').textContent=state.campaigns.length+' campagne(s)';b.innerHTML=state.campaigns.length?state.campaigns.map(c=>`<tr><td><b>${esc(c.name)}</b></td><td>${c.count}</td><td>${c.date}</td><td>${status(c.status)}</td><td><button class="btn secondary" style="padding:6px 9px" onclick="reviewCampaign('${c.id}')">Vérifier / valider</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">Aucune campagne préparée.</td></tr>'}
+function reviewCampaign(id){let c=state.campaigns.find(x=>x.id===id);document.getElementById('reviewText').textContent=`Campagne : ${c.name}. Destinataires estimés : ${c.count}. Cette validation ne déclenche pas d'envoi dans la version actuelle.`;document.getElementById('confirmReview').onclick=()=>{c.status='Validée (test)';log('Campagne validée en mode test : '+c.name);persist();closeModal('reviewModal');toast('Validation enregistrée en mode test.')};modal('reviewModal')}
+function renderReports(){let n=state.contacts.length;document.getElementById('repContacts').textContent=n;document.getElementById('repPending').textContent=state.contacts.filter(c=>c.status==='À relancer').length;document.getElementById('repAnswered').textContent=state.contacts.filter(c=>c.status==='A répondu').length;document.getElementById('repOptout').textContent=state.contacts.filter(c=>c.status==='Ne plus contacter'||c.consent==='Non').length}
+function refresh(){let n=state.contacts.length;document.getElementById('statContacts').textContent=n;document.getElementById('statCampaigns').textContent=state.campaigns.length;document.getElementById('statSent').textContent='0';document.getElementById('statReplies').textContent='0';let pct=Math.round((Math.min(n,1)*20)+(state.templates.length?30:0));document.getElementById('setupPct').textContent=pct+' %';document.getElementById('setupBar').style.width=pct+'%';document.getElementById('activity').innerHTML=state.activity.length?state.activity.map(a=>`<div class="activity"><span class="dot"></span><div><b>${esc(a.msg)}</b><small>${esc(a.date)}</small></div></div>`).join(''):'<div class="empty">Aucune activité pour le moment.</div>';renderContacts();renderCampaigns();renderTemplates();renderReports()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+refresh();
+</script>
+</body>
+</html>
