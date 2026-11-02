@@ -186,8 +186,20 @@ refresh();
       if (error) {
         console.error("Erreur Supabase :", error.message);
       } else {
-        console.log("Connexion Supabase réussie !");
-      }
+        <script>
+(async function () {
+  const { error } = await window.supabaseClient
+    .from("clients")
+    .select("id")
+    .limit(1);
+
+  if (error) {
+    alert("Erreur Supabase : " + error.message);
+  } else {
+    alert("Connexion à Supabase réussie !");
+  }
+})();
+</script>
     });
 </script>
 </body>
